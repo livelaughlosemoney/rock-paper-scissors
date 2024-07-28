@@ -7,6 +7,7 @@
   </head>
   <body>
     <script>
+      /* gets computer choice */
       function getComputerChoice() {
         switch (Math.floor(Math.random() * 3)) {
           case 0:
@@ -17,23 +18,25 @@
             return "paper";
         }
       }
-      console.log(getComputerChoice());
+
+      /* then, prompt the user to make their choice */
 
       function getHumanChoice() {
         let choice = prompt("Rock, paper, or scissors?");
-        if (
-          choice != null &&
-          (choice.toLowerCase() == "rock" ||
+        if (choice != null && choice != undefined) {
+          if (
+            choice.toLowerCase() == "rock" ||
             choice.toLowerCase() == "scissors" ||
-            choice.toLowerCase() == "paper")
-        )
-          return choice;
-        else choice = prompt("Whoops, please pick an allowed option!");
-        return choice;
+            choice.toLowerCase() == "paper"
+          ) {
+            return choice;
+          }
+        } else {
+          choice = prompt("Whoops! Please enter rock, paper, or scissors!");
+        }
       }
 
-      console.log(getHumanChoice());
-
+      /*with each first choice made, we play the game */
       playGame();
 
       function playGame() {
@@ -43,7 +46,17 @@
         while (humanScore + computerScore < 5) {
           const humanSelection = getHumanChoice();
           const computerSelection = getComputerChoice();
+
+          console.log("human choice is: " + humanSelection);
+          console.log("computer choice is: " + computerSelection);
+
           playRound(humanSelection, computerSelection);
+        }
+
+        if (humanScore > computerScore) {
+          console.log("Congrats! You win!");
+        } else {
+          console.log("You lost! Better luck next time!");
         }
 
         function playRound(humanChoice, computerChoice) {
@@ -60,17 +73,30 @@
             console.log(
               "You win! " + humanChoice + " beats " + computerChoice + "!"
             );
+            console.log("Human score = " + humanScore);
+            console.log("Computer score = " + computerScore);
           } else if (
             (humanChoice == "rock" && computerChoice == "rock") ||
             (humanChoice == "scissors" && computerChoice == "scissors") ||
             (humanChoice == "paper" && computerChoice == "paper")
           ) {
-            console.log("Tie! You both picked " + humanChoice + ". Try again!");
+            console.log(
+              "Tie! You both picked " +
+                humanChoice +
+                ". This round doesn't count. Try again!"
+            );
+          } else if (humanChoice == undefined) {
+            computerScore++;
+            console.log("You lose for not picking a true option!");
+            console.log("Human score = " + humanScore);
+            console.log("Computer score = " + computerScore);
           } else {
             computerScore++;
             console.log(
               "You lose! " + computerChoice + " beats " + humanChoice + "!"
             );
+            console.log("Human score = " + humanScore);
+            console.log("Computer score = " + computerScore);
           }
         }
       }
