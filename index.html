@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getComputerChoice() {
+        switch (Math.floor(Math.random() * 3)) {
+          case 0:
+            return "rock";
+          case 1:
+            return "scissors";
+          case 2:
+            return "paper";
+        }
+      }
+      console.log(getComputerChoice());
+
+      function getHumanChoice() {
+        let choice = prompt("Rock, paper, or scissors?");
+        if (
+          choice != null &&
+          (choice.toLowerCase() == "rock" ||
+            choice.toLowerCase() == "scissors" ||
+            choice.toLowerCase() == "paper")
+        )
+          return choice;
+        else choice = prompt("Whoops, please pick an allowed option!");
+        return choice;
+      }
+
+      console.log(getHumanChoice());
+
+      playGame();
+
+      function playGame() {
+        let humanScore = 0;
+        let computerScore = 0;
+
+        while (humanScore + computerScore < 5) {
+          const humanSelection = getHumanChoice();
+          const computerSelection = getComputerChoice();
+          playRound(humanSelection, computerSelection);
+        }
+
+        function playRound(humanChoice, computerChoice) {
+          if (humanChoice != null) {
+            humanChoice.toLowerCase();
+          }
+
+          if (
+            (humanChoice == "paper" && computerChoice == "rock") ||
+            (humanChoice == "rock" && computerChoice == "scissors") ||
+            (humanChoice == "scissors" && computerChoice == "rock")
+          ) {
+            humanScore++;
+            console.log(
+              "You win! " + humanChoice + " beats " + computerChoice + "!"
+            );
+          } else if (
+            (humanChoice == "rock" && computerChoice == "rock") ||
+            (humanChoice == "scissors" && computerChoice == "scissors") ||
+            (humanChoice == "paper" && computerChoice == "paper")
+          ) {
+            console.log("Tie! You both picked " + humanChoice + ". Try again!");
+          } else {
+            computerScore++;
+            console.log(
+              "You lose! " + computerChoice + " beats " + humanChoice + "!"
+            );
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
