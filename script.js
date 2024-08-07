@@ -1,16 +1,16 @@
 let humanScore = 0;
 let computerScore = 0;
-while (humanScore<5 && computerScore<5){
     const buttons = document.querySelectorAll("button");
-
+    //while (humanScore<5 && computerScore<5){
     buttons.forEach((button) =>{
       button.addEventListener("click", () =>{
         const choice = button.getAttribute("id");
         playGame(choice);
       });
     });
-} 
  
+//}
+
  /* gets computer choice */
  function getComputerChoice() {
     switch (Math.floor(Math.random() * 3)) {
@@ -24,25 +24,37 @@ while (humanScore<5 && computerScore<5){
   }
 
   function playGame(choice) {
-      const humanSelection = choice; 
-      const computerSelection = getComputerChoice();
+        const humanSelection = choice; 
+        const computerSelection = getComputerChoice();
 
-      console.log("human choice is: " + humanSelection);
-      console.log("computer choice is: " + computerSelection);
-      const playerContainer = document.querySelector("#humanChoice")
-      const humanChoice = document.createElement("p");
-      humanChoice.classList.add("humanChoice");
-      humanChoice.textContent = "You chose: " + humanSelection;
-      playerContainer.appendChild(humanChoice);
+        console.log("human choice is: " + humanSelection);
+        console.log("computer choice is: " + computerSelection);
+        const playerContainer = document.querySelector("#humanChoice")
+        const humanChoice = document.createElement("p");
+        humanChoice.classList.add("humanChoice");
+        humanChoice.textContent = "You chose: " + humanSelection;
+        playerContainer.appendChild(humanChoice);
 
-      const computerContainer = document.querySelector("#computerChoice")
-      const computerChoice = document.createElement("p");
-      computerChoice.classList.add("computerChoice");
-      computerChoice.textContent = "AI chose:" + computerSelection;
-      computerContainer.appendChild(computerChoice);
+        const computerContainer = document.querySelector("#computerChoice")
+        const computerChoice = document.createElement("p");
+        computerChoice.classList.add("computerChoice");
+        computerChoice.textContent = "AI chose:" + computerSelection;
+        computerContainer.appendChild(computerChoice);
 
-      playRound(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
 
+    //declareWinner(); don't know where to put this.
+  }
+
+  function declareWinner(){
+    if(computerScore==5 ){
+      console.log("Congrats! You win!")
+      return "Congrats! You win!"
+    }
+    else{
+      console.log("Better luck next time! You lose!")
+      return "Better luck next time! You lose!"
+    }
   }
     function playRound(humanChoice, computerChoice) {
       if (humanChoice != null) {
