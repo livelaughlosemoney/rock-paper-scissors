@@ -10,9 +10,7 @@
     <div class="game-container">
       <div class="first-row">You win/lose!</div>
       <div class="second-row">
-        <div class="pokemon-name computer">
-          The Computer chose Fire! Cyndaquil loses to Chimchar!
-        </div>
+        <div class="pokemon-name" id="computerChoice">Choose a Pokemon!</div>
         <div class="pokemon-image-container">
           <img src="./starter-images/cyndaquil.png" id="pokemon" />
         </div>
@@ -21,9 +19,7 @@
         <div class="pokemon-image-container">
           <img src="./starter-images/chimchar.png" id="pokemon" />
         </div>
-        <div class="pokemon-name player">
-          You chose Fire! Chimchar beats Cyndaquil!
-        </div>
+        <div class="pokemon-name" id="humanChoice">Choose a Pokemon!</div>
       </div>
       <div class="fourth-row">
         <button class="choice-button" id="water">Water</button>
@@ -34,7 +30,7 @@
 
     <script src="script.js"></script>
     <script>
-      playGame();
+      //playGame();
     </script>
   </body>
 </html>

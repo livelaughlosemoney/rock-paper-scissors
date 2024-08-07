@@ -1,64 +1,58 @@
+let humanScore = 0;
+let computerScore = 0;
+while (humanScore<5 && computerScore<5){
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach((button) =>{
+      button.addEventListener("click", () =>{
+        const choice = button.getAttribute("id");
+        playGame(choice);
+      });
+    });
+} 
+ 
  /* gets computer choice */
  function getComputerChoice() {
     switch (Math.floor(Math.random() * 3)) {
       case 0:
-        return "rock";
+        return "fire"; //rock
       case 1:
-        return "scissors";
+        return "water"; //paper
       case 2:
-        return "paper";
+        return "grass"; //scissors
     }
   }
 
-  /* then, prompt the user to make their choice */
-
-  function getHumanChoice() {
-   // let choice = prompt("Rock, paper, or scissors?");
-    if (choice != null && choice != undefined) {
-      if (
-        choice.toLowerCase() == "rock" ||
-        choice.toLowerCase() == "scissors" ||
-        choice.toLowerCase() == "paper"
-      ) {
-        return choice;
-      }
-    } else {
-      choice = prompt("Whoops! Please enter rock, paper, or scissors!");
-    }
-  }
-
-  /*with each first choice made, we play the game */
-  playGame();
-
-  function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    while (humanScore + computerScore < 5) {
-      const humanSelection = getHumanChoice();
+  function playGame(choice) {
+      const humanSelection = choice; 
       const computerSelection = getComputerChoice();
 
       console.log("human choice is: " + humanSelection);
       console.log("computer choice is: " + computerSelection);
+      const playerContainer = document.querySelector("#humanChoice")
+      const humanChoice = document.createElement("p");
+      humanChoice.classList.add("humanChoice");
+      humanChoice.textContent = "You chose: " + humanSelection;
+      playerContainer.appendChild(humanChoice);
+
+      const computerContainer = document.querySelector("#computerChoice")
+      const computerChoice = document.createElement("p");
+      computerChoice.classList.add("computerChoice");
+      computerChoice.textContent = "AI chose:" + computerSelection;
+      computerContainer.appendChild(computerChoice);
 
       playRound(humanSelection, computerSelection);
-    }
 
-    if (humanScore > computerScore) {
-      console.log("Congrats! You win!");
-    } else {
-      console.log("You lost! Better luck next time!");
-    }
-
+  }
     function playRound(humanChoice, computerChoice) {
       if (humanChoice != null) {
         humanChoice.toLowerCase();
       }
 
       if (
-        (humanChoice == "paper" && computerChoice == "rock") ||
-        (humanChoice == "rock" && computerChoice == "scissors") ||
-        (humanChoice == "scissors" && computerChoice == "rock")
+        (humanChoice == "water" && computerChoice == "fire") ||
+        (humanChoice == "fire" && computerChoice == "grass") ||
+        (humanChoice == "grass" && computerChoice == "fire")
       ) {
         humanScore++;
         console.log(
@@ -67,9 +61,9 @@
         console.log("Human score = " + humanScore);
         console.log("Computer score = " + computerScore);
       } else if (
-        (humanChoice == "rock" && computerChoice == "rock") ||
-        (humanChoice == "scissors" && computerChoice == "scissors") ||
-        (humanChoice == "paper" && computerChoice == "paper")
+        (humanChoice == "fire" && computerChoice == "fire") ||
+        (humanChoice == "grass" && computerChoice == "grass") ||
+        (humanChoice == "water" && computerChoice == "water")
       ) {
         console.log(
           "Tie! You both picked " +
@@ -90,4 +84,5 @@
         console.log("Computer score = " + computerScore);
       }
     }
-  }
+
+     // in the playRound function, it should overwrite the HTML with the appropriate text.
