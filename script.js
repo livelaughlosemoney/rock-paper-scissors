@@ -1,11 +1,16 @@
 let humanScore = 0;
 let computerScore = 0;
     const buttons = document.querySelectorAll("button");
-    //while (humanScore<5 && computerScore<5){
+    const playerContainer = document.querySelector("#humanChoice");
+    const computerContainer = document.querySelector("#computerChoice")
+    const winLossOutput = document.querySelector(".first-row");
+    const gameContainer = document.querySelector(".game-container");
+    const finalResultContainer = document.querySelector("final-result-container");
+
     buttons.forEach((button) =>{
       button.addEventListener("click", () =>{
         const choice = button.getAttribute("id");
-        playGame(choice);
+        playRound(choice);
       });
     });
  
@@ -23,78 +28,79 @@ let computerScore = 0;
     }
   }
 
-  function playGame(choice) {
-        const humanSelection = choice; 
-        const computerSelection = getComputerChoice();
+    function playRound(choice) {
+      if(humanScore<5 && computerScore<5){
+        const humanChoice = choice; 
+        const computerChoice = getComputerChoice();
+        
+        if (humanChoice != null) {
+          humanChoice.toLowerCase();
 
-        console.log("human choice is: " + humanSelection);
-        console.log("computer choice is: " + computerSelection);
-        const playerContainer = document.querySelector("#humanChoice")
-        const humanChoice = document.createElement("p");
-        humanChoice.classList.add("humanChoice");
-        humanChoice.textContent = "You chose: " + humanSelection;
-        playerContainer.appendChild(humanChoice);
+          playerContainer.innerText = "You chose: " + humanChoice;
+          computerContainer.innerText = "AI chose:" + computerChoice;
+  
+        }
 
-        const computerContainer = document.querySelector("#computerChoice")
-        const computerChoice = document.createElement("p");
-        computerChoice.classList.add("computerChoice");
-        computerChoice.textContent = "AI chose:" + computerSelection;
-        computerContainer.appendChild(computerChoice);
+        if (
+          (humanChoice == "water" && computerChoice == "fire") ||
+          (humanChoice == "fire" && computerChoice == "grass") ||
+          (humanChoice == "grass" && computerChoice == "fire")
+        ) {
+              humanScore++;
+              winLossOutput.innerText = "You win! " + humanChoice + " beats " + computerChoice + "!";
+              console.log(
+                "You win! " + humanChoice + " beats " + computerChoice + "!"
+              );
+              console.log("Human score = " + humanScore);
+              console.log("Computer score = " + computerScore);
+        } 
+        
+        else if (
+          (humanChoice == "fire" && computerChoice == "fire") ||
+          (humanChoice == "grass" && computerChoice == "grass") ||
+          (humanChoice == "water" && computerChoice == "water")
+        ) {
 
-        playRound(humanSelection, computerSelection);
-
-    //declareWinner(); don't know where to put this.
-  }
-
-  function declareWinner(){
-    if(computerScore==5 ){
-      console.log("Congrats! You win!")
-      return "Congrats! You win!"
-    }
-    else{
-      console.log("Better luck next time! You lose!")
-      return "Better luck next time! You lose!"
-    }
-  }
-    function playRound(humanChoice, computerChoice) {
-      if (humanChoice != null) {
-        humanChoice.toLowerCase();
+          winLossOutput.innerText = "Tie! You both picked " + humanChoice +"!";
+              console.log(
+                "Tie! You both picked " +
+                  humanChoice +
+                  ". This round doesn't count. Try again!"
+              );
+        } 
+        
+        else if (humanChoice == undefined) {
+              computerScore++;
+              console.log("You lose for not picking a true option!");
+              console.log("Human score = " + humanScore);
+              console.log("Computer score = " + computerScore);
+        } 
+        
+        else {
+              computerScore++;
+              winLossOutput.innerText = "You lose! " + computerChoice + " beats " + humanChoice + "!";
+              console.log(
+                "You lose! " + computerChoice + " beats " + humanChoice + "!"
+              );
+              console.log("Human score = " + humanScore);
+              console.log("Computer score = " + computerScore);
+        }
       }
 
-      if (
-        (humanChoice == "water" && computerChoice == "fire") ||
-        (humanChoice == "fire" && computerChoice == "grass") ||
-        (humanChoice == "grass" && computerChoice == "fire")
-      ) {
-        humanScore++;
-        console.log(
-          "You win! " + humanChoice + " beats " + computerChoice + "!"
-        );
-        console.log("Human score = " + humanScore);
-        console.log("Computer score = " + computerScore);
-      } else if (
-        (humanChoice == "fire" && computerChoice == "fire") ||
-        (humanChoice == "grass" && computerChoice == "grass") ||
-        (humanChoice == "water" && computerChoice == "water")
-      ) {
-        console.log(
-          "Tie! You both picked " +
-            humanChoice +
-            ". This round doesn't count. Try again!"
-        );
-      } else if (humanChoice == undefined) {
-        computerScore++;
-        console.log("You lose for not picking a true option!");
-        console.log("Human score = " + humanScore);
-        console.log("Computer score = " + computerScore);
-      } else {
-        computerScore++;
-        console.log(
-          "You lose! " + computerChoice + " beats " + humanChoice + "!"
-        );
-        console.log("Human score = " + humanScore);
-        console.log("Computer score = " + computerScore);
-      }
+      else
+      declareWinner();
     }
 
-     // in the playRound function, it should overwrite the HTML with the appropriate text.
+     function declareWinner(){
+      toggleElements();
+
+      const result = humanScore === 5 ? "won" : "lose";
+      finalResultText.innerTexts = `You ${result}! ${humanScore}-${computerScore}`;
+
+    }
+  
+    function toggleElements(){
+      gameContainer.classList.toggle("hidden");
+      finalResultContainer.classList.toggle("hidden");
+      
+    }

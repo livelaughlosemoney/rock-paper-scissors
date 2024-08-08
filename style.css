@@ -47,7 +47,7 @@ html{
     min-width: 600px;
 }
 
-img#pokemon{
+img.pokemon{
     max-width: 200px;
     height:auto;
     flex-shrink: 1;
@@ -108,4 +108,22 @@ font-weight: bold;
 }
 .choice-button#grass{
     color: green;
+}
+
+.final-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    background-color: rgb(132, 132, 220);
+  }
+  
+  .final-result-text {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  
+  .hidden{
+    display: none;
 }

@@ -8,16 +8,24 @@
   </head>
   <body>
     <div class="game-container">
-      <div class="first-row">You win/lose!</div>
+      <div class="first-row">Let's Battle!</div>
       <div class="second-row">
         <div class="pokemon-name" id="computerChoice">Choose a Pokemon!</div>
         <div class="pokemon-image-container">
-          <img src="./starter-images/cyndaquil.png" id="pokemon" />
+          <img
+            src="./starter-images/cyndaquil.png"
+            class="pokemon"
+            id="computerImage"
+          />
         </div>
       </div>
       <div class="third-row">
         <div class="pokemon-image-container">
-          <img src="./starter-images/chimchar.png" id="pokemon" />
+          <img
+            src="./starter-images/chimchar.png"
+            class="pokemon"
+            id="playerImage"
+          />
         </div>
         <div class="pokemon-name" id="humanChoice">Choose a Pokemon!</div>
       </div>
@@ -26,6 +34,10 @@
         <button class="choice-button" id="fire">Fire</button>
         <button class="choice-button" id="grass">Grass</button>
       </div>
+    </div>
+    <div class="final-result-container hidden">
+      <p class="final-result-text"></p>
+      <button class="play-again hidden">Play again</button>
     </div>
 
     <script src="script.js"></script>
