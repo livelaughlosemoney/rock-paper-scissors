@@ -73,11 +73,11 @@ img.pokemon{
 .pokemon-image-container{
     max-width: 200px;
     min-width: 200px;
-  background-image: url("./starter-images/battle-platform.png"); 
+    background-image: url("./starter-images/battle-platform.png"); 
     background-size: cover;
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: 0px 50px;
-    }
+}
 
 
 .text-box{
@@ -113,6 +113,7 @@ font-weight: bold;
 border-color:rgb(171, 70, 70);
 border-style: solid;
 }
+
 input{
     text-align: center;
 }
@@ -159,7 +160,6 @@ input{
     border-width: 0.1em;
     color:rgb(171, 70, 70);
 }
-  
   
   .hidden{
     display: none;

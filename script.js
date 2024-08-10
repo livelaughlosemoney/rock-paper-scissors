@@ -13,6 +13,10 @@ let computerScore = 0;
     const finalResultText = document.querySelector(".final-result-text");
     const playAgainButton = document.querySelector(".play-again-button");
 
+window.onload = function(){
+  input.focus();
+}
+
     buttons.forEach((button) =>{
       button.addEventListener("click", () =>{
         const genNum = input.value;
@@ -44,13 +48,13 @@ let computerScore = 0;
     function playRound(humanChoice, genNum) {
       if(humanScore<5 && computerScore<5){
         const computerChoice = getComputerChoice();
-        
+        const humanChoiceCapitalized = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
+        const computerChoiceCapitalized = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+
         if (humanChoice != null) {
             humanChoice.toLowerCase();
-            const tempHumanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-            const tempComputerChoice = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-            playerContainer.innerText = `You chose: ${tempHumanChoice} \n`;
-            computerContainer.innerText = `AI chose: ${tempComputerChoice} \n`;
+            playerContainer.innerText = `You chose: ${humanChoiceCapitalized} \n`;
+            computerContainer.innerText = `AI chose: ${computerChoiceCapitalized} \n`;
             changeImage(humanChoice, computerChoice, genNum);
         }
 
@@ -60,7 +64,7 @@ let computerScore = 0;
           (humanChoice == "grass" && computerChoice == "fire")
         ) {
               humanScore++;
-              winLossOutput.innerText = `You win! ${humanChoice} beats ${computerChoice}!`;
+              winLossOutput.innerText = `You win! ${humanChoiceCapitalized} beats ${computerChoiceCapitalized}!`;
               const buttonColor = window.getComputedStyle(document.querySelector(`#${humanChoice}`)).backgroundColor;
               winLossOutput.setAttribute("style", `background-color: ${buttonColor}`);
 
@@ -72,13 +76,13 @@ let computerScore = 0;
           (humanChoice == "water" && computerChoice == "water")
         ) {
           
-          winLossOutput.innerText = `Tie! You both picked ${humanChoice}!`;
+          winLossOutput.innerText = `Tie! You both picked ${humanChoiceCapitalized}!`;
           winLossOutput.setAttribute("style", `background-color: grey`);
         } 
         
         else {
               computerScore++;
-              winLossOutput.innerText = `You lose! ${computerChoice} beats ${humanChoice}!`;
+              winLossOutput.innerText = `You lose! ${computerChoiceCapitalized} beats ${humanChoiceCapitalized}!`;
               winLossOutput.setAttribute("style", `background-color: grey`);
         }
 
