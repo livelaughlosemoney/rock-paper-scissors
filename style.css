@@ -12,22 +12,23 @@ html{
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 
 .game-container{
     min-width: 50%;
-    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 5% 15%;
+    margin: 5% 20%;
     border-radius: 30px;
     overflow:hidden;
     border-style: solid;
     border-color:rgb(171, 70, 70);
     border-width: 0.4em;
+    background-color: rgba(232, 118, 118, 0.2);
 }
 
 .first-row{
@@ -60,6 +61,7 @@ html{
     height: 250px;
     min-height:250px; /* is this necessary?? */
     min-width: 600px;
+    padding: 8%;
 }
 
 img.pokemon{
@@ -77,12 +79,9 @@ img.pokemon{
     background-position: 0px 50px;
     }
 
-.pokemon-image-container, .text-box{
-    margin:10%;
-}
 
 .text-box{
-    min-width: 45%;
+    min-width: 40%;
     min-height: 100px;
     display: block;
     text-align: center;
@@ -92,6 +91,7 @@ img.pokemon{
     font-weight:bold;
     flex-wrap: wrap;
     border-radius: 10px;
+    padding: 3%;
 }
 
 .fourth-row{
@@ -135,15 +135,31 @@ input{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 70%;
     min-height: 250px;
-    background-color: rgb(132, 132, 220);
+    background-color: rgb(232, 118, 118);
+    padding: 4% 8% ;
+    margin: 15%;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: rgb(171, 70, 70);
+    border-width: 0.4em;
   }
   
   .final-result-text {
+    text-align: center;
     font-size: 3rem;
     font-weight: 700;
+    color:white;
   }
+
+  .play-again-button{
+    border-style: solid;
+    border-color: rgb(171, 70, 70);
+    border-width: 0.1em;
+    color:rgb(171, 70, 70);
+}
+  
   
   .hidden{
     display: none;
