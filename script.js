@@ -53,8 +53,8 @@ window.onload = function(){
 
         if (humanChoice != null) {
             humanChoice.toLowerCase();
-            playerContainer.innerText = `You chose: ${humanChoiceCapitalized} \n`;
-            computerContainer.innerText = `AI chose: ${computerChoiceCapitalized} \n`;
+            playerContainer.innerText = `You Chose: ${humanChoiceCapitalized} \n`;
+            computerContainer.innerText = `AI Chose: ${computerChoiceCapitalized} \n`;
             changeImage(humanChoice, computerChoice, genNum);
         }
 
