@@ -5,23 +5,33 @@ html{
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-
 }
 
+/* make the default border-box for all elements */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
 .game-container{
-    min-width: 50%; /*unsure about this. does the body automatically fill up the entire screen? */
+    min-width: 50%;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 3% 20%;
+    margin: 5% 15%;
     border-radius: 30px;
-    /*box-sizing: border-box; */
+    overflow:hidden;
+    border-style: solid;
+    border-color:rgb(171, 70, 70);
+    border-width: 0.4em;
 }
 
 .first-row{
-    background-color: rgb(132, 132, 220);
+    background-color: rgb(232, 118, 118);
     display:flex;
     justify-content: center;
     align-items: center;
@@ -31,18 +41,23 @@ html{
     font-size: 24px;
     font-weight: bold;
     min-width: 600px;
+    border-width: 0 0 0.25em 0;
+}
+
+.first-row, .fourth-row{
+    background-color: rgb(232, 118, 118);
+    border-color:rgb(171, 70, 70);
+    border-style: solid;
 }
 
 .second-row, .third-row{
-    background-color: beige;
     display:flex;
-    border-style: solid;
-    border-color: brown;
+    flex-shrink: 1;
     justify-content: space-between;
     align-items: center;
 
     width:100%;
-    height: 300px;
+    height: 250px;
     min-height:250px; /* is this necessary?? */
     min-width: 600px;
 }
@@ -60,54 +75,59 @@ img.pokemon{
     background-size: cover;
   background-repeat: no-repeat;
     background-position: 0px 50px;
-    border-style: solid;
-    border-color: brown;
     }
 
-.pokemon-image-container, .pokemon-name{
+.pokemon-image-container, .text-box{
     margin:10%;
 }
 
-.pokemon-name{
+.text-box{
     min-width: 45%;
     min-height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:skyblue;
+    display: block;
+    text-align: center;
+    background-color:rgb(207, 207, 207);
     color: rgb(70, 68, 68);
-    font-size: 18px;
+    font-size: 26px;
     font-weight:bold;
+    flex-wrap: wrap;
+    border-radius: 10px;
 }
 
 .fourth-row{
-    background-color: rgb(132, 132, 220);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 100px;
     width:100%;
     min-width: 600px;
-    border-style: solid;
-    border-color: brown;
+    border-width: 0.4em 0 0 0;
 }
 
-.choice-button{
+button, input{
 width:150px;
 height: 50px;
 border-radius: 8px;
 font-size: 18px;
 font-weight: bold;
+border-color:rgb(171, 70, 70);
+border-style: solid;
+}
+input{
+    text-align: center;
 }
 
 .choice-button#water{
-    color:blue;
+    background-color:rgb(70, 94, 173);
+    color:white;
 }
 .choice-button#fire{
-    color:red;
+    background-color:rgb(241, 68, 68);
+    color:white;
 }
 .choice-button#grass{
-    color: green;
+    background-color: rgb(70, 218, 70);
+    color:white;
 }
 
 .final-result-container {
@@ -115,6 +135,7 @@ font-weight: bold;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     min-height: 250px;
     background-color: rgb(132, 132, 220);
   }
@@ -126,4 +147,9 @@ font-weight: bold;
   
   .hidden{
     display: none;
+}
+
+.gen-box{
+    width:150px;
+    font-size: 12px;
 }

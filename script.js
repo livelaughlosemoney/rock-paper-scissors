@@ -1,20 +1,31 @@
 let humanScore = 0;
 let computerScore = 0;
-    const buttons = document.querySelectorAll("button");
+    const buttons = document.querySelectorAll(".choice-button");
     const playerContainer = document.querySelector("#humanChoice");
     const computerContainer = document.querySelector("#computerChoice")
     const winLossOutput = document.querySelector(".first-row");
     const gameContainer = document.querySelector(".game-container");
-    const finalResultContainer = document.querySelector("final-result-container");
+    const finalResultContainer = document.querySelector(".final-result-container");
+    const input = document.querySelector(".gen-selector");
+    const playerPokemonImage = document.querySelector("#playerPokemonImage");
+    const computerPokemonImage = document.querySelector("#computerPokemonImage");
 
     buttons.forEach((button) =>{
       button.addEventListener("click", () =>{
-        const choice = button.getAttribute("id");
-        playRound(choice);
+        const genNum = input.value;
+        console.log(genNum);
+        if(genNum==""){
+          alert("You must pick a generation!");
+        }
+        else{
+          const humanChoice = button.getAttribute("id");
+          playRound(humanChoice, genNum);
+          if(humanScore == 5 || computerScore==5){
+            declareWinner();
+          }
+        }
       });
     });
- 
-//}
 
  /* gets computer choice */
  function getComputerChoice() {
@@ -28,17 +39,15 @@ let computerScore = 0;
     }
   }
 
-    function playRound(choice) {
+    function playRound(humanChoice, genNum) {
       if(humanScore<5 && computerScore<5){
-        const humanChoice = choice; 
         const computerChoice = getComputerChoice();
         
         if (humanChoice != null) {
-          humanChoice.toLowerCase();
-
-          playerContainer.innerText = "You chose: " + humanChoice;
-          computerContainer.innerText = "AI chose:" + computerChoice;
-  
+            humanChoice.toLowerCase();
+            playerContainer.innerText = `You chose: ${humanChoice}`;
+            computerContainer.innerText = `AI chose: ${computerChoice}`;
+            changeImage(humanChoice, computerChoice, genNum);
         }
 
         if (
@@ -48,6 +57,10 @@ let computerScore = 0;
         ) {
               humanScore++;
               winLossOutput.innerText = "You win! " + humanChoice + " beats " + computerChoice + "!";
+              //const buttonColor = document.getElementById(`#${humanChoice}`).style.backgroundColor;  
+              const buttonColor = window.getComputedStyle(document.querySelector(`#${humanChoice}`)).backgroundColor;
+              console.log(buttonColor);
+              winLossOutput.setAttribute("style", `background-color: ${buttonColor}`);
               console.log(
                 "You win! " + humanChoice + " beats " + computerChoice + "!"
               );
@@ -60,8 +73,9 @@ let computerScore = 0;
           (humanChoice == "grass" && computerChoice == "grass") ||
           (humanChoice == "water" && computerChoice == "water")
         ) {
-
+          
           winLossOutput.innerText = "Tie! You both picked " + humanChoice +"!";
+          winLossOutput.setAttribute("style", `background-color: grey`);
               console.log(
                 "Tie! You both picked " +
                   humanChoice +
@@ -69,31 +83,32 @@ let computerScore = 0;
               );
         } 
         
-        else if (humanChoice == undefined) {
-              computerScore++;
-              console.log("You lose for not picking a true option!");
-              console.log("Human score = " + humanScore);
-              console.log("Computer score = " + computerScore);
-        } 
-        
         else {
               computerScore++;
               winLossOutput.innerText = "You lose! " + computerChoice + " beats " + humanChoice + "!";
+              winLossOutput.setAttribute("style", `background-color: grey`);
               console.log(
                 "You lose! " + computerChoice + " beats " + humanChoice + "!"
               );
               console.log("Human score = " + humanScore);
               console.log("Computer score = " + computerScore);
         }
-      }
 
-      else
-      declareWinner();
+       const humanScoreLabel = document.createElement("div");
+       humanScoreLabel.classList.add("score");
+       humanScoreLabel.textContent = `Player: ${humanScore}`;
+       playerContainer.appendChild(humanScoreLabel);
+
+       const computerScoreLabel = document.createElement("div");
+       computerScoreLabel.classList.add("score");
+       computerScoreLabel.textContent = `Computer: ${computerScore}`;
+       computerContainer.appendChild(computerScoreLabel);
+      }
     }
 
      function declareWinner(){
       toggleElements();
-
+      console.log("Should be toggling.");
       const result = humanScore === 5 ? "won" : "lose";
       finalResultText.innerTexts = `You ${result}! ${humanScore}-${computerScore}`;
 
@@ -103,4 +118,9 @@ let computerScore = 0;
       gameContainer.classList.toggle("hidden");
       finalResultContainer.classList.toggle("hidden");
       
+    }
+
+    function changeImage(humanChoice, computerChoice, genNum){
+      playerPokemonImage.src = `./starter-images/gen-${genNum}-${humanChoice}.png`;
+      computerPokemonImage.src = `./starter-images/gen-${genNum}-${computerChoice}.png`;
     }

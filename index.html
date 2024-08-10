@@ -10,26 +10,32 @@
     <div class="game-container">
       <div class="first-row">Let's Battle!</div>
       <div class="second-row">
-        <div class="pokemon-name" id="computerChoice">Choose a Pokemon!</div>
+        <div class="text-box" id="computerChoice">
+          <p class="text">Choose a Pokemon!</p>
+        </div>
         <div class="pokemon-image-container">
-          <img
-            src="./starter-images/cyndaquil.png"
-            class="pokemon"
-            id="computerImage"
-          />
+          <img src="" class="pokemon" id="computerPokemonImage" />
         </div>
       </div>
       <div class="third-row">
         <div class="pokemon-image-container">
-          <img
-            src="./starter-images/chimchar.png"
-            class="pokemon"
-            id="playerImage"
-          />
+          <img src="" class="pokemon" id="playerPokemonImage" />
         </div>
-        <div class="pokemon-name" id="humanChoice">Choose a Pokemon!</div>
+        <div class="text-box" id="humanChoice">
+          <p class="text">Choose a Pokemon!</p>
+        </div>
       </div>
       <div class="fourth-row">
+        <div class="gen-box">
+          <input
+            type="number"
+            class="gen-selector"
+            id="gen-selector"
+            placeholder="Choose 1 to 9!"
+            min="1"
+            max="9"
+          />
+        </div>
         <button class="choice-button" id="water">Water</button>
         <button class="choice-button" id="fire">Fire</button>
         <button class="choice-button" id="grass">Grass</button>
@@ -41,8 +47,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-      //playGame();
-    </script>
   </body>
 </html>
